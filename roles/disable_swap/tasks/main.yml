@@ -1,6 +1,7 @@
 --- 
 
 - name: check for swap
+  changed_when: False
   shell: |
     swapon -s
   register: swap_off_status

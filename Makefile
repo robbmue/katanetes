@@ -1,5 +1,5 @@
 bake:
 	git pull	
 	echo "Runnig Katanetes Installer:"
-	cat logo.txt
+	cat assets/logo.txt
 	ansible-playbook site.yml

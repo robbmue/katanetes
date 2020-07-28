@@ -1,0 +1,13 @@
+---
+
+- name: install containerd
+  apt:
+    name: containerd
+    state: latest
+
+
+- name: start and enable containerd service
+  service:
+    name: containerd
+    state: started
+    enabled: yes

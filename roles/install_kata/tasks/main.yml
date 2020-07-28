@@ -1,4 +1,10 @@
 ---
 
+- name: check for Runtime
+  stat:
+    path: /usr/bin/kata-runtime
+  register: kata_runtime_presence
+
 - name: Install the kata-runtime 
   shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/kata-containers/tests/master/cmd/kata-manager/kata-manager.sh) install-packages"
+  when: kata_runtime_presence.stat.exists == False

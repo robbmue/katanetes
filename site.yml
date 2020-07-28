@@ -16,7 +16,7 @@
     - repair_shitty_ansible_file
 
 - name: Install Kata Containers
-  hosts: all
+  hosts: k8sworker
   roles:
     - install_kata
 

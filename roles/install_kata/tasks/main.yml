@@ -1,4 +1,11 @@
 ---
 
+- name: repair shitty ansible file
+  replace:
+    path: /etc/apt/sources.list.d/ansible-ubuntu-ansible-focal.list
+    regexp: focal
+    replace: bionic
+
+
 - name: Install the kata-runtime 
   shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/kata-containers/tests/master/cmd/kata-manager/kata-manager.sh) install-packages"

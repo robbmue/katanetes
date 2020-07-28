@@ -1,10 +1,12 @@
 ---
 
 - name: repair shitty ansible file
+  hosts: k8smaster
   replace:
     path: /etc/apt/sources.list.d/ansible-ubuntu-ansible-focal.list
     regexp: focal
     replace: bionic
+
 
 
 - name: Install the kata-runtime 

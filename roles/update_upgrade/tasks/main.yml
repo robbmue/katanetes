@@ -12,14 +12,14 @@
 
 - name: Set fact reboot check to false
   set_fact:
-    reboot_check_result: false
+    reboot_needed: false
   when: not reboot_check_result.stat.exists
 
 - name: set fact reboot check to true
   set_fact:
-    reboot_check_result: true
+    reboot_needed: true
   when: reboot_check_result.stat.exists
 
 - name: server update reboot | restart server
   reboot:
-  when: reboot_check_result | bool
+  when: reboot_needed | bool

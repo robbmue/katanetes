@@ -8,7 +8,7 @@
 - name: Disable SWAP since kubernetes dosnt want swap enabled (1/2)
   shell: |
     swapoff -a
-  when: swap_off_status.stdout != ""
+  when: swap_off_status.stdout
 
 - name: Disable SWAP in fstab since kubernetes dosnt want swap enabled (2/2)
   replace:

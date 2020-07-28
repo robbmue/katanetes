@@ -12,3 +12,6 @@ Simply clone the Repo and run the Playbook with our Makefile:
 git clone git@github.com:robbmue/katanetes.git && \
 make
 ```
+# Caution
+This repo is yet to be final.
+We do our best. Your PullRequests are welcome!

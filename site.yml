@@ -10,11 +10,16 @@
   roles:
     - disable_swap 
 
+- name: Repair shitty ansible file that is broke because it sucks
+  hosts: k8smaster
+  roles:
+    - repair_shitty_ansible_file
+
 - name: Install Kata Containers
   hosts: all
   roles:
     - install_kata
-    
+
 
 
 

@@ -10,5 +10,12 @@
   roles:
     - disable_swap 
 
+- name: Install Kata Containers
+  hosts: all
+  roles:
+    - install_kata
+    
+
+
 
 

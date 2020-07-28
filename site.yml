@@ -1,7 +1,14 @@
 ---
-- name: Update and upgrade all servers 
+- name: Update and upgrade all servers, set time 
   hosts: all
   roles: 
     - update_upgrade
+    - timezone
+
+- name: Disable Swap for kubernetes
+  hosts: all
+  roles:
+    - disable_swap 
+
 
 

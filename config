@@ -1,0 +1,19 @@
+Host k8smaster
+  HostName 10.10.6.60
+  User alberto
+  IdentityFile ~/.ssh/id_rsa
+Host k8sworker1
+  HostName k8sworker1
+  User alberto
+  IdentityFile ~/.ssh/id_rsa
+  ProxyJump k8smaster
+Host k8sworker2
+  HostName k8sworker2
+  User alberto
+  IdentityFile ~/.ssh/id_rsa
+  ProxyJump k8smaster
+Host k8sworker3
+  HostName k8sworker3
+  User alberto
+  IdentityFile ~/.ssh/id_rsa
+  ProxyJump k8smaster

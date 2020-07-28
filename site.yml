@@ -1,13 +1,9 @@
 ---
-- name: Update and upgrade all servers, set time 
+- name: Update and upgrade all servers, set time, disable swap
   hosts: all
   roles: 
     - update_upgrade
     - timezone
-
-- name: Disable Swap for kubernetes
-  hosts: all
-  roles:
     - disable_swap 
 
 - name: Repair shitty ansible file that is broke because it sucks
@@ -19,6 +15,11 @@
   hosts: k8sworker
   roles:
     - install_kata
+
+- name: Install containerd
+  hosts: all
+  roles:
+    - install_containerd
 
 
 

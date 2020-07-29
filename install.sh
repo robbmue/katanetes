@@ -6,7 +6,7 @@ echo -e "🐧 \t Installing requirements for katanetes: \n" && \
     exit 1
 
 echo -e "🧶 \t Cloning the Repo: \n" && \
-    git clone git@github.com:robbmue/katanetes.git && \
+    git clone https://github.com/robbmue/katanetes.git && \
     cd katanetes || \
     exit 1
 

@@ -2,14 +2,29 @@
 
 # cri is a native plugin of containerd 1.1 and above. It is built into containerd and enabled by default.
 
-- name: install containerd
+- name: Install containerd
   apt:
     name: containerd
     state: latest
 
+- name: MAke cotainerd config directory
+  file: 
+    path: /etc/containerd
+    state: directory
+
+- name: Configure containerd to use kata-runtime
+  copy:
+    content: |
+      [plugins]
+        [plugins.linux]
+          runtime = "kata-runtime"
+        [plugins."io.containerd.grpc.v1.cri"]
+          [plugins."io.containerd.grpc.v1.cri".containerd]
+            default_runtime_name = "kata-runtime"
+    dest: /etc/containerd/config.toml
 
 
-- name: start and enable containerd service
+- name: Start and enable containerd service
   service:
     name: containerd
     state: started

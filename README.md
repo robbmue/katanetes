@@ -1,6 +1,6 @@
-<center>
+i<div style="text-align:center">
     <img height="256px" width="auto" src="assets/katanetes_transparent.png" />  
-</center>
+</div>
 
 # Katanetes - Dont compromise K8S and security
 Ansible playbooks to setup kata containers for K8S

@@ -10,10 +10,15 @@
     path: /etc/kata-containers
     state: directory
 
+- name: check if config is present
+  stat:
+    path: /etc/kata-containers/config.toml
+  register: config_present
+
 - name: Copy default configuration to /etc
-  synchronize:
-    src: /usr/share/defaults/kata-containers
-    dest: /etc/kata-containers
+  command: |
+    cp /usr/share/defaults/kata-containers/configuration.toml /etc/kata-containers/config.toml
+  when: config_present.stat.exists == False
 
 - name: Configure containerd to use kata-runtime
   copy:
@@ -22,7 +27,7 @@
       [plugins.cri.containerd.runtimes.kata]
         runtime_type = "io.containerd.kata.v2"
         [plugins.cri.containerd.runtimes.kata.options]
-          ConfigPath = "/etc/kata-containers/configuration.toml"
+          ConfigPath = "/etc/kata-containers/config.toml"
 
 - name: Restarting containerd
   service:

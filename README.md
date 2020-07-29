@@ -5,6 +5,8 @@
 # Katanetes - Dont compromise K8S and security
 Ansible playbooks to setup kata containers for K8S
 
+![GitHub last commit](https://img.shields.io/github/last-commit/robbmue/katanetes)
+
 # Installation
 ## Requirements
 * Ansible

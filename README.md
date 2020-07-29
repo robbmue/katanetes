@@ -9,7 +9,7 @@ Ansible playbooks to setup kata containers for K8S
 ![GitHub issues](https://img.shields.io/github/issues/robbmue/katanetes)
 
 # Installation
-## Requirements
+## 📜 Requirements
 * Ansible
 * Make
 * cowsay
@@ -20,15 +20,15 @@ If you are on a debian-based system,simply run:
 curl -sSL https://raw.githubusercontent.com/robbmue/katanetes/master/install.sh | bash -
 ```
 ### Other systems:
-#### Manual
+#### ⚙️ Manual
 * Install the requirents
 * Clone the repository: ```git clone git@github.com:robbmue/katanetes.git && cd katanetes```
 * Configure the inventory: ```vim hosts```
 * Lets go: ```make```
-#### Docker
+#### 🐋 Docker
 * Clone the repository: ```git clone git@github.com:robbmue/katanetes.git && cd katanetes```
 * Build the container: ```docker build . -t katanetes``` 
 * Run the container: ```docker run -it --rm katanetes```
-# Caution
+# 🛑 Caution
 This repo is yet to be final.
 We do our best. Your PullRequests are welcome!

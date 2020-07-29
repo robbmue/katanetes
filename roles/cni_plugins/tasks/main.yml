@@ -1,0 +1,24 @@
+---
+
+- name: add gpg key for k8s
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: add Kubernetes repo
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: Update all packages
+  apt:
+    state: latest
+    upgrade: dist
+    update_cache: yes
+
+- name: install kubernetes cni
+  apt:
+    name: kubernetes-cni
+    state: latest
+
+

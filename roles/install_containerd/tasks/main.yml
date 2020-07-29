@@ -1,9 +1,12 @@
 ---
 
+# cri is a native plugin of containerd 1.1 and above. It is built into containerd and enabled by default.
+
 - name: install containerd
   apt:
     name: containerd
     state: latest
+
 
 
 - name: start and enable containerd service

@@ -21,6 +21,11 @@
   roles:
     - install_containerd
 
+- name: setup cni_plugins
+  hosts: all
+  roles:
+    - cni_plugins
+
 
 
 

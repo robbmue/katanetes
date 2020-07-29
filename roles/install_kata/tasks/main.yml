@@ -18,4 +18,5 @@
   shell: |
     sudo kata-runtime kata-check
   register: result
+  changed_when: False 
   failed_when: result.stdout.find("is capable of running Kata") == 1

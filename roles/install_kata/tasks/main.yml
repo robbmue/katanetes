@@ -18,4 +18,4 @@
   shell: |
     sudo kata-runtime kata-check
   register: result
-  failed_when: result.stderr == ""
+  failed_when: result.stderr =! ""

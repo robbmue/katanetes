@@ -39,6 +39,11 @@
             # conf_dir is the directory in which the admin places a CNI conf.
             conf_dir = "/etc/cni/net.d"
 
+          [plugins."io.containerd.grpc.v1.cri".containerd]
+            default_runtime_name = "kata"
+
+
+
 
 
 - name: Restarting containerd

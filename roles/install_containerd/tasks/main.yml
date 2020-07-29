@@ -7,6 +7,11 @@
     name: containerd
     state: latest
 
+- name: MAke cotainerd config directory
+  file: 
+    path: /etc/containerd
+    state: directory
+
 - name: Configure containerd to use kata-runtime
   copy:
     content: |

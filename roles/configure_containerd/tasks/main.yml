@@ -1,0 +1,23 @@
+---
+
+- name: Make cotainerd config directory
+  file: 
+    path: /etc/containerd
+    state: directory
+
+- name: Configure containerd to use kata-runtime
+  copy:
+    content: |
+      [plugins]
+        [plugins.linux]
+          runtime = "kata-runtime"
+        [plugins."io.containerd.grpc.v1.cri"]
+          [plugins."io.containerd.grpc.v1.cri".containerd]
+            default_runtime_name = "kata-runtime"
+    dest: /etc/containerd/config.toml
+
+- name: Restarting containerd
+  service:
+    name: containerd
+    enabled: yes
+    state: restarted

@@ -21,6 +21,11 @@
   roles:
     - install_containerd
 
+- name: Configure containerd
+  hosts: k8sworker
+  roles:
+    - configure_containerd
+
 - name: setup cni_plugins
   hosts: all
   roles:

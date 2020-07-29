@@ -2,7 +2,7 @@
 
 echo -e "🐧 \t Installing requirements for katanetes: \n" && \
     apt update && \
-    apt install -y ansible make git cowsay || \
+    apt install -y ansible make git vim cowsay || \
     exit 1
 
 echo -e "🧶 \t Cloning the Repo: \n" && \

@@ -1,4 +1,4 @@
-i<div style="text-align:center">
+<div style="text-align:center">
     <img height="256px" width="auto" src="assets/katanetes_transparent.png" />  
 </div>
 

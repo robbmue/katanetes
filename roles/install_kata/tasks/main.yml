@@ -13,3 +13,10 @@
 - name: Install the kata-runtime 
   shell: bash -c "$(curl -fsSL https://raw.githubusercontent.com/kata-containers/tests/master/cmd/kata-manager/kata-manager.sh) install-packages"
   when: kata_runtime_presence.stat.exists == False
+
+- name: check if system is capable of running kata containers
+  shell: |
+    sudo kata-runtime kata-check
+  register: result
+  changed_when: False 
+  failed_when: result.stdout.find("is capable of running Kata") == 1

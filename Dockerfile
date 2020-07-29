@@ -5,6 +5,6 @@ COPY . /katanetes
 
 RUN apt update && \
     apt upgrade -y && \
-    apt install -y ansible make git cowsay vim
+    apt install -y ansible make cowsay
 
-ENTRYPOINT [ "./install.sh" ]
+CMD [ "ansible-playbook", "site.yml" ]

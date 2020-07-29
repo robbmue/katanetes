@@ -28,7 +28,7 @@
         [plugins.cri]
           [plugins.cri.containerd]
             [plugins.cri.containerd.default_runtime]
-              #runtime_type = "io.containerd.runtime.v1.linux"
+              runtime_type = "io.containerd.kata.v2"
 
             [plugins.cri.containerd.runtimes.kata]
               runtime_type = "io.containerd.kata.v2"

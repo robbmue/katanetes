@@ -9,10 +9,14 @@
     - kubeadm
     - kubectl
 
+- name: modprobe br_netfilter
+  modprobe:
+    name: br_netfilter
+    state: present
+
 - name: Set ip tables to legacy
-  command: update-alternatives --set {{ item }} /usr/sbin/{{ item }}-legacy
+  command: update-alternatives --set {{ item }} /usr/sbin/{{ item }}-nft
   loop:
     - iptables
     - ip6tables
-    #- arptables 
     - ebtables 

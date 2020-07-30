@@ -1,29 +1,24 @@
 ---
-
-- name: Make cotainerd config directory
+- name: Create config directories for containerd and kata-containers
   file: 
-    path: /etc/containerd
+    path: "/etc/{{ item }}"
     state: directory
+  loop:
+    - containerd
+    - kata-containers
 
-- name: Make kata config directory
-  file: 
-    path: /etc/kata-containers
-    state: directory
-
-- name: check if config is present
-  stat:
-    path: /etc/kata-containers/config.toml
-  register: config_present
-
-- name: Copy default configuration to /etc
-  command: |
-    cp /usr/share/defaults/kata-containers/configuration.toml /etc/kata-containers/config.toml
-  when: config_present.stat.exists == False
+- name: Copy default configuration to /etc if file does not exist
+  copy:
+    src: /usr/share/defaults/kata-containers/configuration.toml
+    dest: /etc/kata-containers/config.toml
+    remote_src: yes
+    force: no
 
 - name: Configure containerd to use kata-runtime
   copy:
     src: "{{ role_path }}/files/config.toml"
     dest: /etc/containerd/config.toml    
+
 
 - name: Restarting containerd
   service:

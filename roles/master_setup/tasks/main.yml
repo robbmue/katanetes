@@ -4,9 +4,17 @@
     src: "{{ role_path }}/files/init_cluster.yml"
     dest: /tmp/init_cluster.yml
 
+- name: kubeadm nit certs
+  command: |
+    kubeadm init phase certs ca
+
+- name: add extra certs
+  command: |
+    kubeadm init phase certs apiserver --apiserver-cert-extra-sans {{ extra_sans }}
+
+
 - name: Initialize cluster with kubeadm
   command: |
     /usr/bin/kubeadm init \
-    --apiserver-cert-extra-sans {{ extra_sans }} \
     --config=/tmp/init_cluster.yml
   register: 

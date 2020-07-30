@@ -28,8 +28,17 @@ curl -sSL https://raw.githubusercontent.com/robbmue/katanetes/master/install.sh 
 * Lets go: ```make```
 #### 🐋 Docker
 * Clone the repository: ```git clone git@github.com:robbmue/katanetes.git && cd katanetes```
-* Build the container: ```docker build . -t katanetes``` 
-* Run the container: ```docker run -it --rm katanetes```
+* Edit the inventory: ```vim hosts```
+  ```ini
+  [k8smaster]
+  localhost
+
+  [k8sworker]
+  k8sworker1
+  k8sworker2
+  k8sworker3
+  ```
+* Run the container: ```docker run -it --rm -v ~/<somewhere>/hosts:/katanetes/hosts robbmue/katanetes```
 # 🛑 Caution
 This repo is yet to be final.
 We do our best. Your PullRequests are welcome!

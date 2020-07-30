@@ -17,4 +17,3 @@
   command: |
     /usr/bin/kubeadm init \
     --config=/tmp/init_cluster.yml
-  register: 

@@ -1,19 +1,11 @@
 ---
-- name: copy config to master
-  copy:
-    src: "{{ role_path }}/files/init_cluster.yml"
-    dest: /tmp/init_cluster.yml
-
-- name: kubeadm nit certs
-  command: |
-    kubeadm init phase certs ca
-
-- name: add extra certs
-  command: |
-    kubeadm init phase certs apiserver --apiserver-cert-extra-sans {{ extra_sans }}
-
 
 - name: Initialize cluster with kubeadm
   command: |
     /usr/bin/kubeadm init \
-    --config=/tmp/init_cluster.yml
+    --pod-network-cidr 10.244.0.0/16 \
+    --apiserver-advertise-address 192.168.0.1 \
+    --apiserver-cert-extra-sans {{ extra_sans }} \
+    --token-ttl 24h0m0s \
+    --token {{ token }}
+

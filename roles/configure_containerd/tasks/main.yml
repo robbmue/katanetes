@@ -22,25 +22,8 @@
 
 - name: Configure containerd to use kata-runtime
   copy:
-    dest: /etc/containerd/config.toml
-    content: |
-      [plugins]
-        [plugins.cri]
-          [plugins.cri.containerd]
-            [plugins.cri.containerd.default_runtime]
-              runtime_type = "io.containerd.kata.v2"
-
-            [plugins.cri.containerd.runtimes.kata]
-              runtime_type = "io.containerd.kata.v2"
-              [plugins.cri.containerd.runtimes.kata.options]
-                ConfigPath = "/etc/kata-containers/config.toml"
-
-          [plugins.cri.cni]
-            # conf_dir is the directory in which the admin places a CNI conf.
-            conf_dir = "/etc/cni/net.d"
-
-          [plugins."io.containerd.grpc.v1.cri".containerd]
-            default_runtime_name = "kata"
+    src: "{{ role_path }}/files/config.toml"
+    dest: /etc/containerd/config.toml    
 
 - name: Restarting containerd
   service:

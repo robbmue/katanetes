@@ -1,0 +1,10 @@
+---
+
+- name: Installation of tools
+  apt:
+    name: "{{ item }}"
+    state: latest
+    loop: 
+      - kubelet
+      - kubeadm
+      - kubectl

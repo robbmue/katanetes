@@ -7,6 +7,7 @@ Ansible playbooks to setup kata containers for K8S
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/robbmue/katanetes)
 ![GitHub issues](https://img.shields.io/github/issues/robbmue/katanetes)
+![Docker Build Status](https://img.shields.io/docker/build/robbmue/katanetes)
 
 # Installation
 ## 📜 Requirements

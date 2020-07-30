@@ -8,3 +8,11 @@
     - kubelet
     - kubeadm
     - kubectl
+
+- name: Set ip tables to legacy
+  command: update-alternatives --set {{ item }} /usr/sbin/{{ item }}-legacy
+  loop:
+    - iptables
+    - ip6tables
+    - arptables 
+    - ebtables 

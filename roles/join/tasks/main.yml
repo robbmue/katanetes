@@ -1,0 +1,5 @@
+---
+
+- name: kubeadm join
+  command: |
+    kubeadm join --token={{ token }} k8smaster

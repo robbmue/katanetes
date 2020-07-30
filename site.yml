@@ -36,7 +36,15 @@
   roles:
     - kubetools
 
+- name: Master setup
+  hosts: k8smaster
+  roles:
+    - master_setup
 
+- name: Join Cluster
+  hosts: k8sworker
+  roles:
+    - join
     
 
 

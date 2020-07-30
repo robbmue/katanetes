@@ -1,0 +1,12 @@
+---
+- name: copy config to master
+  copy:
+    src: "{{ role_path }}/files/init_cluster.yml"
+    dest: /tmp/init_cluster.yml
+
+- name: Initialize cluster with kubeadm
+  command: |
+    /usr/bin/kubeadm init \
+    --apiserver-cert-extra-sans {{ extra-sans }} \
+    --config=/tmp/init_cluster.yml
+  register: 

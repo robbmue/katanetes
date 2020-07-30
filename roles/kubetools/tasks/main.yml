@@ -14,5 +14,5 @@
   loop:
     - iptables
     - ip6tables
-    - arptables 
+    #- arptables 
     - ebtables 

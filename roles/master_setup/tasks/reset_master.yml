@@ -1,8 +1,8 @@
 ---
 
-- name: remoce kubernetes first
+- name: remove kubernetes first
   command: |
-    kubeadm reset
+    kubeadm reset -f
 
 - name: stop all running containers
   command: |

@@ -10,8 +10,7 @@
     kubectl get nodes
   register: get_nodes
 
-- name: reset kubernetes status
-  include_tasks:
+- include_tasks:
     - reset_master.yml
   when: not get_nodes.stdout
 

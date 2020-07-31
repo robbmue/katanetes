@@ -46,6 +46,12 @@
   roles:
     - role: join_nodes
       tags: join_tag
+
+- name: Setup Calico Networking
+  hosts: k8smaster
+  roles:
+    - role: calico_networking
+      tags: networking
     
 
 

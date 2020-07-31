@@ -24,7 +24,7 @@
     --token {{ token }}
 
 - name: setup config for alberto
-  tasks:
+  include_tasks:
     - name: create directory
       file:
           path: /home/alberto/.kube # required. Path to the file being managed.

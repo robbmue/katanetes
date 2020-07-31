@@ -44,7 +44,8 @@
 - name: Join Cluster
   hosts: k8sworker
   roles:
-    - join_nodes
+    - role: join_nodes
+      tags: join_tag
     
 
 

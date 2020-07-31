@@ -1,5 +1,5 @@
 [k8smaster]
-localhost
+k8smaster
 
 [k8sworker]
 k8sworker1

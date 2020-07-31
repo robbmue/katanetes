@@ -1,5 +1,8 @@
 version = 2
 
+[grpc]
+  gid = 1000
+
 [plugins."io.containerd.grpc.v1.cri"]
   [plugins."io.containerd.grpc.v1.cri".containerd]
     default_runtime_name = "kata"

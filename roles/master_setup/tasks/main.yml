@@ -1,5 +1,20 @@
 ---
 
+- name: set scrctl config to have debugging tools for kubernetes on master
+  copy:
+    src: "{{ role_path }}/files/crictl.yaml"
+    dest: /etc/crictl.yaml
+
+- name: is already insalled check
+  command: |
+    kubectl get nodes
+  register: get_nodes
+
+- name: reset kubernetes status
+  include_tasks:
+    - reset_master.yml
+  when: not get_nodes.stdout
+
 - name: Initialize cluster with kubeadm
   command: |
     /usr/bin/kubeadm init \

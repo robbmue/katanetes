@@ -1,5 +1,16 @@
 ---
 
+- name: set IPv4 Forwarding on all the nodes
+  sysctl:
+      name: net.ipv4.ip_forward # required. The dot-separated path (aka I(key)) specifying the sysctl variable.
+      reload: yes # not required. If C(yes), performs a I(/sbin/sysctl -p) if the C(sysctl_file) is updated. If C(no), does not reload I(sysctl) even if the C(sysctl_file) is updated.
+      state: present # not required. choices: present;absent. Whether the entry should be present or absent in the sysctl file.
+      sysctl_set: yes # not required. Verify token value with the sysctl command and set with -w if necessary
+      ignoreerrors: no # not required. Use this option to ignore errors about unknown keys.
+      sysctl_file: /etc/sysctl.conf # not required. Specifies the absolute path to C(sysctl.conf), if not C(/etc/sysctl.conf).
+      value: "1" # not required. Desired value of the sysctl key.:
+   
+
 - name: kubeadm join
   command: |
     kubeadm join --discovery-token-unsafe-skip-ca-verification --token={{ token }} k8smaster:6443

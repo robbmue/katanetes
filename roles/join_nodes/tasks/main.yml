@@ -2,4 +2,4 @@
 
 - name: kubeadm join
   command: |
-    kubeadm join --token={{ token }} k8smaster
+    kubeadm join --discovery-token-unsafe-skip-ca-verification --token={{ token }} k8smaster

@@ -6,6 +6,8 @@
     dest: /etc/crictl.yaml
 
 - name: is already insalled check
+  failed_when: False
+  changed_when: False
   command: |
     kubectl get nodes
   register: get_nodes

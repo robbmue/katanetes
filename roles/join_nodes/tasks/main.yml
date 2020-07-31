@@ -1,5 +1,9 @@
 ---
 
+- name: kubeadm reset 
+  command: |
+    kubeadm reset 
+
 - name: set IPv4 Forwarding on all the nodes
   sysctl:
       name: net.ipv4.ip_forward # required. The dot-separated path (aka I(key)) specifying the sysctl variable.

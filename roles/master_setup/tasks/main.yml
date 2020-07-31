@@ -10,8 +10,8 @@
     kubectl get nodes
   register: get_nodes
 
-- include_tasks:
-    - reset_master.yml
+- name: reset kubernetes status
+  include: reset_master.yml
   when: not get_nodes.stdout
 
 - name: Initialize cluster with kubeadm

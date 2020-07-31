@@ -23,23 +23,21 @@
     --token-ttl 24h0m0s \
     --token {{ token }}
 
-- name: setup config for alberto
-  include:
-    - name: create directory
-      file:
-          path: /home/alberto/.kube # required. Path to the file being managed.
-          state: directory # not required. choices: absent;directory;file;hard;link;touch. If C(directory), all intermediate subdirectories will be created if they do not exist. Since Ansible 1.7 they will be created with the supplied permissions. If C(file), the file will NOT be created if it does not exist; see the C(touch) value or the M(copy) or M(template) module if you want that behavior.  If C(link), the symbolic link will be created or changed. Use C(hard) for hardlinks. If C(absent), directories will be recursively deleted, and files or symlinks will be unlinked. Note that C(absent) will not cause C(file) to fail if the C(path) does not exist as the state did not change. If C(touch) (new in 1.4), an empty file will be created if the C(path) does not exist, while an existing file or directory will receive updated file access and modification times (similar to the way `touch` works from the command line).
-        
-    - name: copy config
-      copy:
-        src: /etc/kubernetes/admin.conf
-        dest: /home/alberto/.kube/config
-        remote_src: yes
-        force: yes
+- name: create directory
+  file:
+      path: /home/alberto/.kube # required. Path to the file being managed.
+      state: directory # not required. choices: absent;directory;file;hard;link;touch. If C(directory), all intermediate subdirectories will be created if they do not exist. Since Ansible 1.7 they will be created with the supplied permissions. If C(file), the file will NOT be created if it does not exist; see the C(touch) value or the M(copy) or M(template) module if you want that behavior.  If C(link), the symbolic link will be created or changed. Use C(hard) for hardlinks. If C(absent), directories will be recursively deleted, and files or symlinks will be unlinked. Note that C(absent) will not cause C(file) to fail if the C(path) does not exist as the state did not change. If C(touch) (new in 1.4), an empty file will be created if the C(path) does not exist, while an existing file or directory will receive updated file access and modification times (similar to the way `touch` works from the command line).
+    
+- name: copy config
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /home/alberto/.kube/config
+    remote_src: yes
+    force: yes
 
-    - name: set rights on config
-      file:
-        path: /home/alberto/.kube/config
-        owner: alberto
-        group: alberto
+- name: set rights on config
+  file:
+    path: /home/alberto/.kube/config
+    owner: alberto
+    group: alberto
 

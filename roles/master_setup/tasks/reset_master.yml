@@ -4,14 +4,6 @@
   command: |
     kubeadm reset -f
 
-#- name: stop all running containers
-#  command: |
-#   crictl stop $(crictl ps -a -q)
-
-#- name: remove all existing containes
-#  command: |
-#    crictl rm $(crictl ps -a -q) 
-
 - name: reset iptables
   systemd:
     name: netfilter-persistent

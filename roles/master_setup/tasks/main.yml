@@ -5,16 +5,14 @@
     src: "{{ role_path }}/files/crictl.yaml"
     dest: /etc/crictl.yaml
 
-- name: is already insalled check
-  failed_when: False
-  changed_when: False
-  command: |
-    kubectl get nodes
-  register: get_nodes
+- name: check if kubelet file exists
+  stat: 
+    path: /etc/kubernetes/kubelet.conf
+  register: kubelet_conf
 
 - name: reset kubernetes status
   include: reset_master.yml
-  when: not get_nodes.stdout
+  when: kubelet_conf.stat.exists == True
 
 - name: Initialize cluster with kubeadm
   command: |
@@ -25,4 +23,10 @@
     --token-ttl 24h0m0s \
     --token {{ token }}
 
+- name: setup config for alberto
+  become: no
+  command: |
+    mkdir -p $HOME/.kube  \
+    && sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config \
+    && sudo chown $(id -u):$(id -g) $HOME/.kube/config
 

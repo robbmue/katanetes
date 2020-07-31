@@ -1,8 +1,14 @@
 ---
+- name: check if kubelet file exists
+  stat: 
+    path: /etc/kubernetes/kubelet.conf
+  register: kubelet_conf
+
 
 - name: kubeadm reset 
   command: |
     kubeadm reset -f
+  when: kubelet_conf.stat.exists == True
 
 - name: set IPv4 Forwarding on all the nodes
   sysctl:

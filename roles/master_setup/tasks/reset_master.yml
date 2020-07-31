@@ -1,5 +1,9 @@
 ---
 
+- name: remoce kubernetes first
+  command: |
+    kubeadm reset
+
 - name: stop all running containers
   command: |
    crictl stop $(crictl ps -a -q)
@@ -12,4 +16,5 @@
   systemd:
     name: netfilter-persistent
     state: restarted
+
     

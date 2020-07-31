@@ -6,5 +6,6 @@
     dest: /home/alberto/calico.yaml
 
 - name: Apply Manifest on kubernetes
+  become_user: alberto
   command: |
     kubectl apply -f /home/alberto/calico.yaml

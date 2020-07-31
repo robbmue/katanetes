@@ -2,7 +2,7 @@
 
 - name: kubeadm reset 
   command: |
-    kubeadm reset 
+    kubeadm reset -f
 
 - name: set IPv4 Forwarding on all the nodes
   sysctl:

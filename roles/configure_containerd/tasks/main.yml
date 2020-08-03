@@ -17,8 +17,8 @@
 - name: Configure containerd to use kata-runtime
   copy:
     src: "{{ role_path }}/files/config.toml"
-    dest: /etc/containerd/config.toml    
-
+    dest: /etc/containerd/config.toml  
+    force: yes  
 
 - name: Restarting containerd
   service:

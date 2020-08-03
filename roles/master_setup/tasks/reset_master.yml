@@ -8,5 +8,3 @@
   systemd:
     name: netfilter-persistent
     state: restarted
-
-    

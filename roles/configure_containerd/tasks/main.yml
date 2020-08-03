@@ -25,3 +25,4 @@
     name: containerd
     enabled: yes
     state: restarted
+  changed_when: False

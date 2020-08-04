@@ -1,11 +1,6 @@
 ---
 
-- name: Copy calico manifest
-  copy:
-    src: "{{ role_path }}/files/calico.yaml"
-    dest: /home/alberto/calico.yaml
-
 - name: Apply Manifest on kubernetes
   become_user: alberto
   command: |
-    kubectl apply -f /home/alberto/calico.yaml
+    kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml

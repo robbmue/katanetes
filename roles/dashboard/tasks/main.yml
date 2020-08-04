@@ -1,0 +1,32 @@
+---
+
+- name: apply dashboard manifest
+  command: |
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.3/aio/deploy/recommended.yaml
+
+- name: create folder for manifests
+  file:
+      path: /home/alberto/k8s
+      state: directory 
+
+- name: copy manifest files dashboard adminuser
+  copy:
+    src: "{{ roel_path }}/files/*"
+    dest: "/home/alberto/k8s/"  
+
+- name: apply adminuser and culsterrolebinding 
+  become_user: alberto
+  command: |
+    kubectl apply -f ~/k8s/{{ item }}
+  with_items:
+    - dashboard-adminuser.yaml
+    - dashboard-clusterrolebinding.yaml
+
+- name: generate token for dashboard user
+  command: |
+    kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+  register: token
+
+- name: print token
+  debug: 
+    msg: token.stout

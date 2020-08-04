@@ -1,6 +1,0 @@
----
-
-- name: Apply Manifest on kubernetes
-  become_user: alberto
-  command: |
-    kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml

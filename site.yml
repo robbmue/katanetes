@@ -51,7 +51,7 @@
 - name: Setup Calico Networking
   hosts: k8smaster
   roles:
-    - role: calico_networking
+    - role: cilium_networking
       tags: networking
     
 

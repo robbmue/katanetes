@@ -12,3 +12,10 @@ version = 2
       runtime_type = "io.containerd.kata.v2"
       [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata.options]
         ConfigPath = "/etc/kata-containers/config.toml"
+
+    [plugins."io.containerd.grpc.v1.cri".containerd.untrusted_workload_runtime]
+      # runtime_type is the runtime type to use in containerd e.g. io.containerd.runtime.v1.linux
+      runtime_type = "io.containerd.runtime.v1.linux"
+
+      # runtime_engine is the name of the runtime engine used by containerd.
+      runtime_engine = "/usr/bin/kata-runtime"

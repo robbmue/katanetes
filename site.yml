@@ -24,8 +24,8 @@
 - name: Configure containerd
   hosts: k8sworker
   roles:
-    role: configure_containerd
-    tags: containerd
+    - role: configure_containerd
+      tags: containerd
 
 - name: setup cni_plugins
   hosts: all

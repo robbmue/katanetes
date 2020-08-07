@@ -5,10 +5,20 @@
     url: https://baltocdn.com/helm/signing.asc
     state: present
 
-- name: install apt-transport-https
+- name: install apt-transport-https and pip
   apt:
-    name: apt-transport-https
+    name: {{ item }}
     state: latest
+  with_items:
+    - apt-transport-https
+    - python3-pip
+
+- name: install pip libaries for k8s managed ansible
+  pip:
+    name:
+      - openshift  
+      - pyyaml
+      - kubernetes
 
 - name: add helm repo
   apt_repository:

@@ -6,6 +6,7 @@
     state: present
 
 - name: install helm to manage deployments
+  become_user: alberto
   apt:
     name: helm
     state: latest
@@ -16,6 +17,7 @@
     dest: /home/alberto/longhorn
 
 - name: add longhorn namespace
+  become_user: alberto
   k8s:
     name: longhorn-system
     api_version: v1
@@ -23,6 +25,7 @@
     state: present
 
 - name: deploy longhorn via helm
+  become_user: alberto
   helm:
     host: localhost
     chart:
@@ -35,6 +38,7 @@
     namespace: longhorn-system
 
 - name: deploy traefik via helm
+  become_user: alberto
   helm:
     host: localhost
     chart:

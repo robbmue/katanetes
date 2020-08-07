@@ -7,7 +7,7 @@
 
 - name: install apt-transport-https and pip
   apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: latest
   with_items:
     - apt-transport-https

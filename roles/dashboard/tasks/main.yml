@@ -1,9 +1,5 @@
 ---
 
-- name: apply dashboard manifest
-  command: |
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.3/aio/deploy/recommended.yaml
-
 - name: create folder for manifests
   file:
       path: /home/alberto/k8s
@@ -13,6 +9,10 @@
   copy:
     src: "{{ roel_path }}/files/*"
     dest: "/home/alberto/k8s/"  
+
+- name: apply http-dashboard manifest
+  command: |
+    kubectl apply -f /home/alberto/k8s/http-kubernetes-dashboard.yaml
 
 - name: apply adminuser and culsterrolebinding 
   become_user: alberto

@@ -1,0 +1,46 @@
+---
+
+- name: add helm repo
+  apt_repository:
+    repo: deb https://baltocdn.com/helm/stable/debian/ all main
+    state: present
+
+- name: install helm to manage deployments
+  apt:
+    name: helm
+    state: latest
+
+- name: add longhorn repo
+  git:
+    repo: https://github.com/longhorn/longhorn
+    dest: /home/alberto/longhorn
+
+- name: add longhorn namespace
+  k8s:
+    name: longhorn-system
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: deploy longhorn via helm
+  helm:
+    host: localhost
+    chart:
+      name: longhorn
+      source:
+        type: repo
+        location: /home/alberto/longhorn/chart/
+    state: present
+    name: longhorn
+    namespace: longhorn-system
+
+- name: deploy traefik via helm
+  helm:
+    host: localhost
+    chart:
+      name: traefik
+      source:
+        type: repo
+        location: https://containous.github.io/traefik-helm-chart
+    state: present
+    name: traefik

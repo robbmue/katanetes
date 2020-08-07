@@ -48,11 +48,15 @@
     - role: join_nodes
       tags: join_tag
 
-- name: Setup Calico Networking
+- name: Standart Kubernetes Setup
   hosts: k8smaster
   roles:
     - role: cilium_networking
       tags: networking
+    - role: dashboard
+      tags: dashboard
+    - role: storage_ing
+      tags: storage
     
 
 

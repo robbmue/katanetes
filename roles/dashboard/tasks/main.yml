@@ -11,6 +11,7 @@
     dest: "/home/alberto/k8s/"  
 
 - name: apply http-dashboard manifest
+  become_user: alberto
   command: |
     kubectl apply -f /home/alberto/k8s/http-kubernetes-dashboard.yaml
 

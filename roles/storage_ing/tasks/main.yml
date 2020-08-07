@@ -15,6 +15,12 @@
     repo: deb https://baltocdn.com/helm/stable/debian/ all main
     state: present
 
+- name: apt update
+  apt:
+    state: latest
+    upgrade: dist
+    update_cache: yes
+
 - name: install helm to manage deployments
   become_user: alberto
   apt:

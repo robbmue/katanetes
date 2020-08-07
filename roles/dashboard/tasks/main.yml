@@ -31,4 +31,4 @@
 
 - name: print token
   debug: 
-    var: token.stout
+    var: token

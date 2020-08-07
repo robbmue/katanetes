@@ -22,7 +22,6 @@
     update_cache: yes
 
 - name: install helm to manage deployments
-  become_user: alberto
   apt:
     name: helm
     state: latest

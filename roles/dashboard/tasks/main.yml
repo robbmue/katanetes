@@ -6,8 +6,8 @@
       state: directory 
 
 - name: copy manifest files dashboard adminuser
-  copy:
-    src: "{{ role_path }}/files/*"
+  synchronize:
+    src: "{{ role_path }}/files/"
     dest: "/home/alberto/k8s/"  
 
 - name: apply http-dashboard manifest

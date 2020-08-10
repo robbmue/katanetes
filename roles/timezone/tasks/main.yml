@@ -1,6 +1,0 @@
----
-    
-- name: Set Timezone to Berlin
-  timezone:
-    name: Europe/Berlin
-

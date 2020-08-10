@@ -2,14 +2,7 @@
 - name: Update and upgrade all servers, set time, disable swap
   hosts: all
   roles: 
-    - update_upgrade
-    - timezone
-    - disable_swap 
-
-- name: Repair shitty ansible file that is broke because it sucks
-  hosts: k8smaster
-  roles:
-    - repair_shitty_ansible_file
+    - base
 
 - name: Install Kata Containers
   hosts: k8sworker
@@ -27,14 +20,10 @@
     - role: configure_containerd
       tags: containerd
 
-- name: setup cni_plugins
+- name: setup cni_plugins and kubetools
   hosts: all
   roles:
     - cni_plugins
-
-- name: Install Kuberbetes tools
-  hosts: all
-  roles:
     - kubetools
 
 - name: Master setup
@@ -55,8 +44,10 @@
       tags: networking
     - role: dashboard
       tags: dashboard
-    - role: storage_ing
+    - role: storage
       tags: storage
+    - role: ingress
+      tags: ingress
     
 
 

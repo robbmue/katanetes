@@ -1,0 +1,49 @@
+---
+
+- name: Set Timezone to Berlin
+  timezone:
+    name: Europe/Berlin
+
+- name: Update all packages
+  apt:
+    state: latest
+    upgrade: dist
+    update_cache: yes
+
+
+- name: Check if reboot is needed
+  stat:
+    path: /var/run/reboot-required
+  register: reboot_check_result
+
+- name: Set fact reboot check to false
+  set_fact:
+    reboot_needed: false
+  when: not reboot_check_result.stat.exists
+
+- name: set fact reboot check to true
+  set_fact:
+    reboot_needed: true
+  when: reboot_check_result.stat.exists
+
+- name: server update reboot | restart server
+  reboot:
+  when: reboot_needed | bool
+
+- name: check for swap
+  changed_when: False
+  shell: |
+    swapon -s
+  register: swap_off_status
+
+- name: Disable SWAP since kubernetes dosnt want swap enabled (1/2)
+  shell: |
+    swapoff -a
+  when: swap_off_status.stdout != ""
+
+- name: Disable SWAP in fstab since kubernetes dosnt want swap enabled (2/2)
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+    replace: '# \1'
+

@@ -56,15 +56,24 @@
   command: |
     helm install longhorn /home/alberto/longhorn/chart/ --namespace longhorn-system
 
-- name: deploy traefik via helm
+- name: Add Traefik's chart repository to Helm
   become_user: alberto
-  helm:
-    host: localhost
-    chart:
-      name: traefik
-      source:
-        type: repo
-        location: "https://containous.github.io/traefik-helm-chart"
-    state: present
-    name: traefik
-    namespace: traefik
+  failed_when: False
+  command: |
+    helm repo add traefik https://containous.github.io/traefik-helm-chart
+    
+
+- name: update the chart repository
+  become_user: alberto
+  failed_when: False
+  command:
+    helm repo update
+
+- name: install with the helm command line
+  become_user: alberto
+  register: out2
+  failed_when: >
+    ("re-use" not in out2.stderr) and
+    (out2.stderr != '')
+  command: |
+    helm install traefik traefik/traefik

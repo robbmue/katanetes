@@ -7,11 +7,8 @@
 
 - name: install apt-transport-https and pip
   apt:
-    name: "{{ item }}"
+    name: ['apt-transport-https', 'python3-pip']
     state: latest
-  with_items:
-    - apt-transport-https
-    - python3-pip
 
 - name: install pip libaries for k8s managed ansible
   pip:
@@ -19,6 +16,7 @@
       - openshift  
       - pyyaml
       - kubernetes
+      - pyhelm
 
 - name: add helm repo
   apt_repository:

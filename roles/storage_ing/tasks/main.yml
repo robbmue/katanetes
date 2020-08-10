@@ -49,7 +49,7 @@
 
 - name: deploy longhorn via helm
   become_user: alberto
-  commannd: |
+  command: |
     helm install longhorn /home/alberto/longhorn/chart/ --namespace longhorn-system
 
 - name: deploy traefik via helm

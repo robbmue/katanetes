@@ -51,7 +51,7 @@
   become_user: alberto
   register: out
   failed_when: >
-    !("re-use" in out.stderr) and
+    ("re-use" not in out.stderr) and
     (out.stderr != '')
   command: |
     helm install longhorn /home/alberto/longhorn/chart/ --namespace longhorn-system

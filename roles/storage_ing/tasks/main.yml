@@ -49,16 +49,8 @@
 
 - name: deploy longhorn via helm
   become_user: alberto
-  helm:
-    host: localhost
-    chart:
-      name: longhorn
-      source:
-        type: repo
-        location: "/home/alberto/longhorn/chart/"
-    state: present
-    name: longhorn
-    namespace: longhorn-system
+  commannd: |
+    helm install longhorn /home/alberto/longhorn/chart/ --namespace longhorn-system
 
 - name: deploy traefik via helm
   become_user: alberto
@@ -67,7 +59,8 @@
     chart:
       name: traefik
       source:
-        type: repo
+        type: git
         location: "https://containous.github.io/traefik-helm-chart"
     state: present
     name: traefik
+    namespace: traefik

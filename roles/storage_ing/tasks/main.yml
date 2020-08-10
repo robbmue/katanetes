@@ -59,7 +59,7 @@
     chart:
       name: traefik
       source:
-        type: git
+        type: repo
         location: "https://containous.github.io/traefik-helm-chart"
     state: present
     name: traefik

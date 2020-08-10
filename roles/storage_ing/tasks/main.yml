@@ -55,7 +55,7 @@
       name: longhorn
       source:
         type: repo
-        location: /home/alberto/longhorn/chart/
+        location: "/home/alberto/longhorn/chart/"
     state: present
     name: longhorn
     namespace: longhorn-system
@@ -68,6 +68,6 @@
       name: traefik
       source:
         type: repo
-        location: https://containous.github.io/traefik-helm-chart
+        location: "https://containous.github.io/traefik-helm-chart"
     state: present
     name: traefik

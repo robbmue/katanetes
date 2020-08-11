@@ -29,13 +29,16 @@
 
 
 - name: make traefik service a cluster IP, to access all other services on standart ports
+  become_user: alberto
   command: |
     kubectl apply -f /home/alberto/k8s/traefik_setup.yml
 
 - name: setup k8s-dashboard ingress
+  become_user: alberto
   command: |
     kubectl apply -f /home/alberto/k8s/k8s_dashboard_ingress.yml
   
 - name: setup traefik-dashboard ingress
+  become_user: alberto
   command: |
     kubectl apply -f /home/alberto/k8s/traefik_dashboard_ingress.yml  

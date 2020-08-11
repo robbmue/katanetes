@@ -28,10 +28,10 @@
     dest: "/home/alberto/k8s/" 
 
 
-- name: make traefik service a cluster IP, to access all other services on standart ports
-  become_user: alberto
-  command: |
-    kubectl apply -f /home/alberto/k8s/traefik_setup.yml
+#- name: make traefik service a cluster IP, to access all other services on standart ports
+#  become_user: alberto
+#  command: |
+#    kubectl apply -f /home/alberto/k8s/traefik_setup.yml
 
 - name: setup k8s-dashboard ingress
   become_user: alberto

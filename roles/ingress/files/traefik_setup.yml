@@ -10,10 +10,12 @@ spec:
     - name: web
       protocol: TCP
       port: 80
+      nodePort: 0
       targetPort: web
     - name: websecure
       protocol: TCP
       port: 443
+      nodePort: 0
       targetPort: websecure
     - name: traefik
       protocol: TCP
@@ -22,7 +24,6 @@ spec:
   selector:
     app.kubernetes.io/instance: traefik
     app.kubernetes.io/name: traefik
-  clusterIP: 10.101.189.4
   type: ClusterIP
   externalIPs:
     - 10.10.6.60

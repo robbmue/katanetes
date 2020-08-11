@@ -21,3 +21,21 @@
     (out2.stderr != '')
   command: |
     helm install traefik traefik/traefik
+
+- name: copy manifest files for ingress configuration
+  synchronize:
+    src: "{{ role_path }}/files/"
+    dest: "/home/alberto/k8s/" 
+
+
+- name: make traefik service a cluster IP, to access all other services on standart ports
+  command: |
+    kubectl apply -f /home/alberto/k8s/traefik_setup.yml
+
+- name: setup k8s-dashboard ingress
+  command: |
+    kubectl apply -f /home/alberto/k8s/k8s_dashboard_ingress.yml
+  
+- name: setup traefik-dashboard ingress
+  command: |
+    kubectl apply -f /home/alberto/k8s/traefik_dashboard_ingress.yml  

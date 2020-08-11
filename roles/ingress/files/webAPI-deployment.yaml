@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapi-deployment
+  labels:
+    app: webapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapi
+  template:
+    metadata:
+      annotations: 
+        io.kubernetes.cri.untrusted-workload: "true"
+      labels:
+        app: webapi
+    spec:
+      containers:
+      - name: webapi
+        image: robbmue/webapi
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapi-service
+spec:
+  selector:
+    app: webapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: webapi-ingress
+spec:
+  rules:
+  - host: webapi.k8smaster      
+    http:
+      paths:
+      - backend:
+          serviceName: webapi-service
+          servicePort: 80

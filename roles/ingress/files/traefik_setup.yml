@@ -1,0 +1,29 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: traefik
+  namespace: default
+  selfLink: /api/v1/namespaces/default/services/traefik
+spec:
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: web
+    - name: websecure
+      protocol: TCP
+      port: 443
+      targetPort: websecure
+    - name: traefik
+      protocol: TCP
+      port: 9000
+      targetPort: traefik
+  selector:
+    app.kubernetes.io/instance: traefik
+    app.kubernetes.io/name: traefik
+  clusterIP: 10.101.189.4
+  type: ClusterIP
+  externalIPs:
+    - 10.10.6.60
+  sessionAffinity: None

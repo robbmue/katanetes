@@ -5,7 +5,7 @@
     src: "{{ role_path }}/files/"
     dest: "/home/alberto/k8s/" 
 
-- name: install with the helm command line
+- name: install ingress-nginx 
   become_user: alberto
   command: |
     kubectl apply -f /home/alberto/k8s/ingress_nginx.yaml
@@ -15,7 +15,3 @@
   command: |
     kubectl apply -f /home/alberto/k8s/k8s_dashboard_ingress.yml
   
-- name: setup traefik-dashboard ingress
-  become_user: alberto
-  command: |
-    kubectl apply -f /home/alberto/k8s/traefik_dashboard_ingress.yml  

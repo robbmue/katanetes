@@ -1,37 +1,14 @@
 ---
 
-- name: Add Traefik's chart repository to Helm
-  become_user: alberto
-  failed_when: False
-  command: |
-    helm repo add traefik https://containous.github.io/traefik-helm-chart
-    
-
-- name: update the chart repository
-  become_user: alberto
-  failed_when: False
-  command:
-    helm repo update
-
-- name: install with the helm command line
-  become_user: alberto
-  register: out2
-  failed_when: >
-    ("re-use" not in out2.stderr) and
-    (out2.stderr != '')
-  command: |
-    helm install traefik traefik/traefik
-
 - name: copy manifest files for ingress configuration
   synchronize:
     src: "{{ role_path }}/files/"
     dest: "/home/alberto/k8s/" 
 
-
-- name: make traefik service a cluster IP, to access all other services on standart ports
+- name: install with the helm command line
   become_user: alberto
   command: |
-    kubectl apply -f /home/alberto/k8s/traefik_setup.yml
+    kubectl apply -f /home/alberto/k8s/ingress_nginx.yaml
 
 - name: setup k8s-dashboard ingress
   become_user: alberto

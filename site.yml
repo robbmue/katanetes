@@ -48,6 +48,8 @@
       tags: storage
     - role: ingress
       tags: ingress
+    - role: webapp_kata
+      tags: kata-test
     
 
 

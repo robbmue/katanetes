@@ -1,0 +1,11 @@
+---
+
+- name: copy manifest files for kata app configuration
+  synchronize:
+    src: "{{ role_path }}/files/"
+    dest: "/home/alberto/k8s/" 
+
+- name: deploy webapp in kata runtime 
+  become_user: alberto
+  command: |
+    kubectl apply -f /home/alberto/k8s/webAPI-deployment.yaml

@@ -9,8 +9,7 @@
     state: latest
     upgrade: dist
     update_cache: yes
-    cache_valid_time: 86400 
-
+    allow_unauthenticated: yes
 
 - name: Check if reboot is needed
   stat:

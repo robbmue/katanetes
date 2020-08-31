@@ -19,3 +19,6 @@ version = 2
 
       # runtime_engine is the name of the runtime engine used by containerd.
       runtime_engine = "/usr/bin/kata-runtime"
+
+      # To enable networking for the workloads run by Kata, CRI-O needs to be configured to manage network namespaces, by setting the following key to true.
+      manage_ns_lifecycle = true

@@ -28,6 +28,7 @@
     state: latest
     upgrade: dist
     update_cache: yes
+  failed_when: False
 
 - name: install helm to manage deployments
   apt:

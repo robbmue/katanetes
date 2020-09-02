@@ -40,7 +40,7 @@
 - name: Standart Kubernetes Setup
   hosts: k8smaster
   roles:
-    - role: cilium_networking
+    - role: flannel_networking
       tags: networking
     - role: dashboard
       tags: dashboard

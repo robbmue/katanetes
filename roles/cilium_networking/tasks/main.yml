@@ -1,6 +1,0 @@
----
-
-- name: Apply Manifest on kubernetes
-  become_user: alberto
-  command: |
-    kubectl create -f https://raw.githubusercontent.com/cilium/cilium/1.8.2/install/kubernetes/quick-install.yaml

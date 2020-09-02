@@ -1,0 +1,6 @@
+---
+
+- name: Apply Manifest on kubernetes
+  become_user: alberto
+  command: |
+    kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml

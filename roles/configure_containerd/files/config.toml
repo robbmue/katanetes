@@ -63,6 +63,7 @@ imports = ["/etc/containerd/config.toml"]
            SystemdCgroup = false
         [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata]
           runtime_type = "io.containerd.kata.v2"
+          privileged_without_host_devices = true
           [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata.options]
             ConfigPath = "/etc/kata-containers/config.toml"
         [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.katacli]

@@ -11,11 +11,10 @@ spec:
       app: webapi
   template:
     metadata:
-      annotations: 
-        io.kubernetes.cri.untrusted-workload: "true"
       labels:
         app: webapi
     spec:
+      runtimeClassName: kata
       containers:
       - name: webapi
         image: robbmue/webapi

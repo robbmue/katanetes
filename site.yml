@@ -5,7 +5,7 @@
     - base
 
 - name: Install Kata Containers
-  hosts: k8sworker
+  hosts: worker
   roles:
     - install_kata
 
@@ -15,7 +15,7 @@
     - install_containerd
 
 - name: Configure containerd
-  hosts: k8sworker
+  hosts: worker
   roles:
     - role: configure_containerd
       tags: containerd
@@ -27,18 +27,18 @@
     - kubetools
 
 - name: Master setup
-  hosts: k8smaster
+  hosts: master
   roles:
     - master_setup
 
 - name: Join Cluster
-  hosts: k8sworker
+  hosts: worker
   roles:
     - role: join_nodes
       tags: join_tag
 
 - name: Standart Kubernetes Setup
-  hosts: k8smaster
+  hosts: master
   roles:
     - role: flannel_networking
       tags: networking
